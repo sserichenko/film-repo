@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/vue-film-observer'
+    publicPath: '/film-watcher/'
 }
