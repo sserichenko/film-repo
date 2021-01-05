@@ -1,3 +1,3 @@
-module.exports = {
-    publicPath: '/film-watcher/'
-}
+// module.exports = {
+//     publicPath: '/film-watcher/'
+// }
