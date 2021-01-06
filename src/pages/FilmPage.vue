@@ -6,6 +6,9 @@
       :src="'https://image.tmdb.org/t/p/w300' + film.poster_path"
       :alt="film.title"
     >
+    <div class="film-rating-details">
+      <Counter />
+    </div>
     <div class="section">
       <p class="section__title">Кратко о сюжете картины:</p>
       <p class="section__description">{{ film.overview }}</p>
@@ -34,6 +37,7 @@
 
 <script>
 import axios from 'axios'
+import Counter from '../components/Counter'
 export default {
   data() {
     return {
@@ -41,23 +45,32 @@ export default {
       films: []
     }
   },
+  components: {
+    Counter
+  },
 
   mounted() {
-  axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=cca4f3f0eccebecd8c46e6ebdb81f687&language=en-US&page=2`)
-  .then(response => {
-    this.films = response.data.results
-    window.filmArray = [...response.data.results]
-    const film = window.filmArray.find(film => film.id == this.$route.params.id)
+  // axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=cca4f3f0eccebecd8c46e6ebdb81f687&language=en-US&page=2`)
+  // .then(response => {
+  //   this.films = response.data.results
+  //   window.filmArray = [...response.data.results]
+  //   const film = window.filmArray.find(film => film.id == this.$route.params.id)
+  //   if (film) {
+  //     this.film = film
+  //   }
+  //   })
+    
+  // .catch(err => {
+  //     console.error(err);
+  //   });
+
+  // }
+  this.films = [...this.films,...window.filmArray]
+  const film = window.filmArray.find(film => film.id == this.$route.params.id)
     if (film) {
       this.film = film
     }
-    })
-    
-  .catch(err => {
-      console.error(err);
-    });
-
-  }
+}
 }
 </script>
 
@@ -87,6 +100,16 @@ position: relative;
     left: 0;
     background: linear-gradient(90deg, #EB5804 0%, rgba(0,0,0,0) 90%);
 }
+
+.img-wrapper{
+  position: relative;
+}
+
+/* .film-rating-details{
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+} */
 
 .film-page  img {
 object-fit: cover;

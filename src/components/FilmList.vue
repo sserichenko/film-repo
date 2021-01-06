@@ -25,7 +25,13 @@ export default {
 </script>
 
 <style scoped>
-.film-card {
+
+.film-list{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.film-list .film-card {
   margin-bottom: 40px;
 }
 </style>

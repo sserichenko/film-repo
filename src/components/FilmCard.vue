@@ -7,6 +7,11 @@
     >
     <p class="rating">{{ film.popularity }}</p>
     <p class="title">{{ film.title }}</p>
+    <div class="film-counter">
+      <Counter 
+      :film="film"
+      />
+    </div>
     <router-link :to="{ name: 'filmPage', params: { id: film.id } }"
       class="more-info"
     >
@@ -16,11 +21,20 @@
 </template>
 
 <script>
+import Counter from '../components/Counter'
 export default {
+  data(){
+    return {
+      count: 4
+    }
+  },
   props: {
     film: {
       type: Object
     }
+  },
+  components: {
+    Counter
   }
 }
 </script>
@@ -29,6 +43,7 @@ export default {
 .film-card {
   position: relative;
   width: 700px;
+  margin: 0 auto;
 }
 .film-card img {
 object-fit: cover;
@@ -50,6 +65,14 @@ padding: 20px;
 font-size: 30px;
 border-radius: 0 0 10px 10px;
 }
+
+.film-card .film-counter{
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  z-index: 5;
+}
+
 .film-card .rating {
 position: absolute;
 right: 0;
